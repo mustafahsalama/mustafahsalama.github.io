@@ -6,11 +6,9 @@
     <meta name="description" content="Professional Flutter Developer specializing in iOS and Android mobile app development. View my portfolio, projects, and experience." />
     <meta name="keywords" content="Flutter Developer, Mobile App Developer, Dart, Firebase, iOS, Android" />
     <meta name="author" content="Mustafa Hisham" />
+    <title>Mustafa Hisham – Mobile Developer Portfolio</title>
 
-    <title>Mustafa Hisham– Mobile Developer Portfolio</title>
-
-   <style>
-        /* Global Styles */
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -31,7 +29,6 @@
             padding: 20px;
         }
 
-        /* Header */
         header {
             text-align: center;
             padding: 40px 20px;
@@ -39,7 +36,7 @@
             animation: fadeInDown 1s ease;
         }
 
-       .profile-image-container {
+        .profile-image-container {
             width: 180px;
             height: 180px;
             margin: 0 auto 25px;
@@ -72,7 +69,6 @@
             font-weight: 400;
         }
 
-        /* Navigation */
         .nav {
             display: flex;
             justify-content: center;
@@ -105,7 +101,6 @@
             color: white;
         }
 
-        /* Content */
         .content {
             background: white;
             border-radius: 20px;
@@ -123,7 +118,6 @@
             animation: fadeIn 0.5s ease;
         }
 
-        /* About Section */
         .about-section {
             line-height: 1.9;
         }
@@ -143,7 +137,6 @@
             line-height: 1.8;
         }
 
-        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -188,7 +181,6 @@
             left: 0;
         }
 
-        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -202,6 +194,7 @@
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -224,17 +217,6 @@
 
         .project-card:hover .project-image-wrapper img {
             transform: scale(1.05);
-        }
-
-        .project-image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4em;
         }
 
         .project-content {
@@ -268,7 +250,7 @@
             border-radius: 12px;
             font-size: 0.85em;
         }
-       /* Store Buttons */
+
         .store-buttons {
             display: flex;
             gap: 10px;
@@ -301,7 +283,6 @@
             flex-shrink: 0;
         }
 
-        /* Experience */
         .experience-item {
             margin-bottom: 30px;
             padding: 20px;
@@ -334,7 +315,6 @@
             line-height: 1.7;
         }
 
-        /* Contact */
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -379,7 +359,219 @@
             font-weight: 700;
         }
 
-        /* Animations */
+        /* Project Detail Modal */
+        .project-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .project-modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+            color: #1e3c72;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .image-gallery {
+            position: relative;
+            background: #f5f5f5;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            height: 500px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .gallery-image.active {
+            display: block;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .gallery-nav.prev {
+            left: 15px;
+        }
+
+        .gallery-nav.next {
+            right: 15px;
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .project-detail-section {
+            margin-bottom: 30px;
+        }
+
+        .project-detail-section h3 {
+            color: #1e3c72;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .project-detail-section p {
+            color: #5a6c7d;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .features-list li {
+            padding: 12px 12px 12px 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 10px;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tech-tag {
+            background: #1e3c72;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .modal-store-buttons {
+            display: flex;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+        }
+
+        .modal-store-buttons .store-button {
+            flex: 1;
+            justify-content: center;
+            padding: 15px 25px;
+            font-size: 1em;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -402,7 +594,17 @@
             }
         }
 
-        /* Responsive */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -425,34 +627,36 @@
                 text-align: left;
                 font-size: 1.05em;
             }
+
+            .modal-content {
+                margin: 20px;
+            }
+
+            .image-gallery {
+                height: 400px;
+            }
+
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-store-buttons {
+                flex-direction: column;
+            }
         }
     </style>
-
-    <script>
-        function showSection(id) {
-            document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
-            document.querySelectorAll(".nav button").forEach(btn => btn.classList.remove("active"));
-            document.getElementById(id).classList.add("active");
-            event.target.classList.add("active");
-        }
-    </script>
 </head>
 
 <body>
 <div class="container">
-
-    <!-- HEADER -->
     <header>
-        
-       <div class="profile-image-container">
+        <div class="profile-image-container">
             <img src="IMG_5528.jpeg" alt="Mustafa Hisham" class="profile-image" />
         </div>
-        
         <h1>Mustafa Hisham</h1>
         <p>Flutter Developer | Mobile App Developer</p>
     </header>
 
-    <!-- NAV -->
     <div class="nav">
         <button onclick="showSection('about')" class="active">About</button>
         <button onclick="showSection('skills')">Skills</button>
@@ -461,17 +665,13 @@
         <button onclick="showSection('contact')">Contact</button>
     </div>
 
-    <!-- CONTENT -->
     <div class="content">
-
-        <!-- ABOUT -->
-        <div id="about" class="section active">
+        <div id="about" class="section active about-section">
             <h2>About Me</h2>
             <p>Passionate and results-driven Flutter Developer with 5+ years of experience in building high-performance mobile applications for both iOS and Android. Skilled in delivering seamless user experiences and writing clean, scalable code using Flutter and Dart.</p>
             <p>Experienced in integrating REST APIs, applying robust state management solutions, and following industry best practices. Always eager to learn and implement new technologies to deliver efficient and elegant solutions.</p>
         </div>
 
-        <!-- SKILLS -->
         <div id="skills" class="section">
             <h2>Technical Skills</h2>
             <div class="skills-grid">
@@ -512,13 +712,10 @@
             </div>
         </div>
 
-        <!-- PROJECTS -->
         <div id="projects" class="section">
             <h2>Featured Projects</h2>
-
             <div class="projects-grid">
-
-                <div class="project-card">
+                <div class="project-card" onclick="openProjectModal(0)">
                     <div class="project-image-wrapper">
                         <img src="siraj-app.jpg" alt="Siraj Student App" />
                     </div>
@@ -531,132 +728,58 @@
                             <span class="tag">Hive</span>
                             <span class="tag">BLoC</span>
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.modeem.siraj&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <a href="https://apps.apple.com/us/app/siraj-student-%D8%B3%D8%B1%D8%A7%D8%AC-%D8%A7%D9%84%D8%B7%D8%A7%D9%84%D8%A8/id6748962177" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a>
-                            </div>
                     </div>
                 </div>
-                 <div class="project-card">
+
+                <div class="project-card" onclick="openProjectModal(1)">
                     <div class="project-image-wrapper">
                         <img src="city-app.jpg" alt="CITY PROPERTIES" />
                     </div>
                     <div class="project-content">
                         <h3>CITY PROPERTIES</h3>
-                        <p>
-                            The Tenant Mobile app allows real-time access to lease information via the internet.
-You can review and edit contact information, create and manage services requests, view your ledger, give notice, and review documents shared by the owner/property management company.
-                        </p>
+                        <p>The Tenant Mobile app allows real-time access to lease information via the internet. You can review and edit contact information, create and manage services requests.</p>
                         <div class="project-tags">
                             <span class="tag">Flutter</span>
                             <span class="tag">Java EE Backend</span>
-                            <span class="tag">Hive</span>
-                            <span class="tag">Shared Prefrences</span>
                             <span class="tag">Firebase</span>
-                            <span class="tag">Google Map</span>
                             <span class="tag">BLoC</span>
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.city.tenantmnm&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <a href="https://apps.apple.com/ae/app/city-properties/id1304887901" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a>
-                            </div>
                     </div>
-                    
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" onclick="openProjectModal(2)">
                     <div class="project-image-wrapper">
                         <img src="amlaki-app.jpg" alt="AMLAKI" />
                     </div>
                     <div class="project-content">
                         <h3>AMLAKI</h3>
-                        <p>
-                            Landlord application is designed to replace your patchwork of property management solutions with one single integrated platform. With all of your data stored in the property management cloud, our online access via your smartphone enables you to log on at your convenience. This Convenient Service Allows you to View copies of documents relevant to your property,
+                        <p>Landlord application designed to replace your patchwork of property management solutions with one single integrated platform.</p>
                         <div class="project-tags">
                             <span class="tag">Flutter</span>
-                            <span class="tag">Java EE Backend</span>
-                            <span class="tag">Hive</span>
-                            <span class="tag">Shared Prefrences</span>
-                            <span class="tag">Firebase</span>
+                            <span class="tag">Java EE</span>
                             <span class="tag">Google Map</span>
-                            <span class="tag">BLoC</span>
                             <span class="tag">Chart</span>
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.city.landlord&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <a href="https://apps.apple.com/fr/app/amlaki/id1344414289" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a>
-                            </div>
                     </div>
-                    
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" onclick="openProjectModal(3)">
                     <div class="project-image-wrapper">
                         <img src="legal-app.jpg" alt="Amlaki Legal Affairs" />
                     </div>
                     <div class="project-content">
                         <h3>AMLAKI LEGAL AFFAIRS</h3>
-                        <p>
-                            This application that displays lowyer tasks to be performed, allows adding tasks and manipulating existing tasks.
+                        <p>Application that displays lawyer tasks to be performed, allows adding tasks and manipulating existing tasks.</p>
                         <div class="project-tags">
                             <span class="tag">Flutter</span>
-                            <span class="tag">Java EE Backend</span>
-                           
-                            <span class="tag">Shared Prefrences</span>
+                            <span class="tag">Java EE</span>
                             <span class="tag">Firebase</span>
-                        
                             <span class="tag">BLoC</span>
-                            
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.city.landlord&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <a href="https://apps.apple.com/us/app/amlaki-legal-affairs/id6740233669" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a>
-                            </div>
                     </div>
-                    
                 </div>
 
-                 <div class="project-card">
+                <div class="project-card" onclick="openProjectModal(4)">
                     <div class="project-image-wrapper">
                         <img src="jobvisit-app.jpg" alt="Job Visit App" />
                     </div>
@@ -667,22 +790,11 @@ You can review and edit contact information, create and manage services requests
                             <span class="tag">Flutter</span>
                             <span class="tag">SQLite</span>
                             <span class="tag">BLoC</span>
-                            <span class="tag">Shared Prefrences</span>
-                            <span class="tag">Java EE</span>
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.royalcity.jobvisitplus&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                
-                            </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" onclick="openProjectModal(5)">
                     <div class="project-image-wrapper">
                         <img src="rabe-app.jpg" alt="Rabih Bank App" />
                     </div>
@@ -693,203 +805,121 @@ You can review and edit contact information, create and manage services requests
                             <span class="tag">Flutter</span>
                             <span class="tag">Java Backend</span>
                             <span class="tag">Provider</span>
-                            <span class="tag">Shared Prefrences</span>
-                            <span class="tag">SQLite</span>
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.azomni.ssbomni&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <!-- <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a> -->
-                            </div>
                     </div>
                 </div>
 
-               
-
-                
-
-                 <div class="project-card">
+                <div class="project-card" onclick="openProjectModal(6)">
                     <div class="project-image-wrapper">
                         <img src="alnileen-insurance.png" alt="ElNILEIN INSURANCE APP" />
                     </div>
                     <div class="project-content">
                         <h3>ElNILEIN INSURANCE APP</h3>
-
-                        
-
-                        <p>Nilein Insurance’s medical network application</p>
+                        <p>Nilein Insurance's medical network application</p>
                         <div class="project-tags">
                             <span class="tag">Flutter</span>
                             <span class="tag">Hive</span>
-                            <span class="tag">Shared Prefrences</span>
                             <span class="tag">BLoC</span>
-                            <span class="tag">Dot Net Backend</span>
                         </div>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.elnilein.insurance&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <!-- <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a> -->
-                            </div>
                     </div>
                 </div>
-                 <div class="project-card">
+
+                <div class="project-card" onclick="openProjectModal(7)">
                     <div class="project-image-wrapper">
                         <img src="jb-app.jpg" alt="JB APP" />
                     </div>
                     <div class="project-content">
                         <h3>JB APP</h3>
-                        <p>JB App is a mobile application offers personal banking services for Al Jazeera Sudanese Bank customers.</p>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.azomn.jb&hl=en" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <!-- <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a> -->
-                            </div>
+                        <p>Mobile application offers personal banking services for Al Jazeera Sudanese Bank customers.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Banking</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
+
+                <div class="project-card" onclick="openProjectModal(8)">
                     <div class="project-image-wrapper">
                         <img src="ahlena-app.jpg" alt="AHLINA APP" />
                     </div>
                     <div class="project-content">
                         <h3>AHLINA APP</h3>
-                        <p>AHLINA App is a mobile banking application offers personal banking services for National Bank of Sudan: NBS customers.</p>
-                        <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=com.aztech.NBS&hl=en_NZ&gl=US" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <!-- <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a> -->
-                            </div>
+                        <p>Mobile banking application for National Bank of Sudan: NBS customers.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Banking</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
+
+                <div class="project-card" onclick="openProjectModal(9)">
                     <div class="project-image-wrapper">
                         <img src="tasheel-app.jpg" alt="TASHEEL APP" />
                     </div>
                     <div class="project-content">
                         <h3>TASHEEL APP</h3>
-                        <p>TASHEEL is an educational mobile application designed to help students practice and assess their knowledge across various school subjects. The app provides interactive quizzes, instant score evaluation, and progress tracking</p>
-                        <!-- <div class="store-buttons">
-                                <a href="https://play.google.com/store/apps/details?id=your.app.id" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                                    </svg>
-                                    Google Play
-                                </a>
-                                <a href="https://apps.apple.com/app/idYOUR_APP_ID" target="_blank" class="store-button">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
-                                    </svg>
-                                    App Store
-                                </a>
-                            </div> -->
+                        <p>Educational mobile application designed to help students practice and assess their knowledge across various school subjects.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Education</span>
+                        </div>
                     </div>
                 </div>
-
-                
-
-               
-
             </div>
         </div>
 
-        <!-- EXPERIENCE -->
         <div id="experience" class="section">
             <h2>Experience</h2>
 
-      <div class="experience-item"> 
-      <h3>Senior Mobile Developer - Flutter  - Yes Solutions</h3> 
-        
-          <div class="date">July 2024 - Present</div>
-          <p>Leading mobile app development projects, mentoring junior developers, and implementing best practices for Flutter development.Developing enterprise mobile applications using Flutter, Java EE, and Oracle databases. Successfully delivered 5+ apps to production.</p> 
-      <h4>APPs</h4> 
-           <div class="project-tags">
-                            <span class="tag">Job Vist</span>
-                            <span class="tag">City  Properties</span>
-                            <span class="tag">Amlaki</span>
-                            <span class="tag">Amlaki Legal Affairs</span>
-                            <span class="tag">Amlaki Court Cases</span>
-                            <span class="tag">Amlaki Estate Agent</span>
-                            <span class="tag">Royal City Superviser</span>
-                            <span class="tag">Vtracker</span>
-                             <span class="tag">PHL Vtrack</span>
-                             <span class="tag">Tenant Booking</span>
-                        </div>
-      </div>
+            <div class="experience-item">
+                <h3>Senior Mobile Developer - Flutter - Yes Solutions</h3>
+                <div class="date">July 2024 - Present</div>
+                <p>Leading mobile app development projects, mentoring junior developers, and implementing best practices for Flutter development. Developing enterprise mobile applications using Flutter, Java EE, and Oracle databases. Successfully delivered 5+ apps to production.</p>
+                <h4>APPs</h4>
+                <div class="project-tags">
+                    <span class="tag">Job Visit</span>
+                    <span class="tag">City Properties</span>
+                    <span class="tag">Amlaki</span>
+                    <span class="tag">Amlaki Legal Affairs</span>
+                    <span class="tag">Royal City Supervisor</span>
+                    <span class="tag">Vtracker</span>
+                </div>
+            </div>
+
             <div class="experience-item">
                 <h3>Mobile Developer – Freelance</h3>
                 <div class="date">2020 – 2024</div>
                 <p>Delivered custom mobile applications for banking, clients in education, real estate, and business sectors.</p>
-                 <h4>APPs</h4> 
-           <div class="project-tags">
-                            <span class="tag">Rabeh Saudi Sudanese Bank</span>
-                            <span class="tag">JB</span>
-                            <span class="tag">Ahlina - Mobile Banking</span>
-                            <span class="tag">Siraj - Student</span>
-                            <span class="tag">Siraj - Teacher</span>
-                            <span class="tag">Ayda App</span>
-                        
-                        </div>
+                <h4>APPs</h4>
+                <div class="project-tags">
+                    <span class="tag">Rabeh Bank</span>
+                    <span class="tag">JB</span>
+                    <span class="tag">Ahlina</span>
+                    <span class="tag">Siraj Student</span>
+                </div>
             </div>
-            <div class="experience-item"> 
-                <h3>Senior VAS Engineer - MTN Sudan </h3> 
+
+            <div class="experience-item">
+                <h3>Senior VAS Engineer - MTN Sudan</h3>
                 <div class="date">May 2019 - July 2024</div>
-            
-                <p>Monitoring and maintained multiple Value Added Services such as SMS, RBT, MCN&NOR and DMC. Collaborated with marketing and Digital teams to create seamless user experiences.</p> 
+                <p>Monitoring and maintained multiple Value Added Services such as SMS, RBT, MCN&NOR and DMC. Collaborated with marketing and Digital teams to create seamless user experiences.</p>
             </div>
-            
-             <div class="experience-item">
-            <h3>Mobile Developer -  MW for Modern Services</h3>
-                 <div class="date">Jan 2018 - May 2019</div>
-           
-            <p>Started my journey in mobile development, working on small to medium-sized Flutter projects and learning industry best practices.</p>
-             <h4>APPs</h4> 
-           <div class="project-tags">
-                            <span class="tag">PayChat Plus</span>
-                        <span class="tag">PayChat Merchant</span>
-                        </div>
-             </div>
+
+            <div class="experience-item">
+                <h3>Mobile Developer - MW for Modern Services</h3>
+                <div class="date">Jan 2018 - May 2019</div>
+                <p>Started my journey in mobile development, working on small to medium-sized Flutter projects and learning industry best practices.</p>
+                <h4>APPs</h4>
+                <div class="project-tags">
+                    <span class="tag">PayChat Plus</span>
+                    <span class="tag">PayChat Merchant</span>
+                </div>
+            </div>
         </div>
 
-        <!-- CONTACT -->
         <div id="contact" class="section">
             <h2>Contact</h2>
             <div class="contact-info">
-
                 <div class="contact-card">
                     <h3>📧 Email</h3>
                     <a href="mailto:mustafahishamsalama@gmail.com">mustafahishamsalama@gmail.com</a>
@@ -909,11 +939,363 @@ You can review and edit contact information, create and manage services requests
                     <h3>💻 GitHub</h3>
                     <a href="https://github.com/mustafahsalama" target="_blank">github.com/mustafahsalama</a>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
+
+<!-- Project Detail Modal -->
+<div id="projectModal" class="project-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+            <button class="close-btn" onclick="closeProjectModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="image-gallery">
+                <img id="galleryImage1" class="gallery-image active" src="" alt="Project screenshot 1" />
+                <img id="galleryImage2" class="gallery-image" src="" alt="Project screenshot 2" />
+                <img id="galleryImage3" class="gallery-image" src="" alt="Project screenshot 3" />
+                <img id="galleryImage4" class="gallery-image" src="" alt="Project screenshot 4" />
+                
+                <button class="gallery-nav prev" onclick="prevImage()">‹</button>
+                <button class="gallery-nav next" onclick="nextImage()">›</button>
+                
+                <div class="gallery-dots">
+                    <span class="dot active" onclick="goToImage(0)"></span>
+                    <span class="dot" onclick="goToImage(1)"></span>
+                    <span class="dot" onclick="goToImage(2)"></span>
+                    <span class="dot" onclick="goToImage(3)"></span>
+                </div>
+            </div>
+
+            <div class="project-detail-section">
+                <h3>About This Project</h3>
+                <p id="modalDescription"></p>
+            </div>
+
+            <div class="project-detail-section">
+                <h3>Key Features</h3>
+                <ul id="modalFeatures" class="features-list"></ul>
+            </div>
+
+            <div class="project-detail-section">
+                <h3>Technologies Used</h3>
+                <div id="modalTechnologies" class="tech-tags"></div>
+            </div>
+
+            <div class="modal-store-buttons" id="modalStoreButtons"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const projectsData = [
+        {
+            title: "SIRAJ STUDENT | سراج الطالب",
+            description: "SIRAJ STUDENT is a comprehensive educational platform designed specifically for Quran classes. The application provides teachers and administrators with powerful tools to manage student attendance, track memorization progress, schedule classes, and generate detailed reports. Students can view their progress, upcoming classes, and receive notifications about their learning journey. The app features real-time synchronization with the backend, offline support for uninterrupted usage, and detailed analytics for tracking student development over time.",
+            features: [
+                "Real-time student progress tracking with detailed memorization records",
+                "Automated class scheduling with conflict detection",
+                "Comprehensive attendance management system",
+                "Progress reports and analytics dashboard",
+                "Push notifications for class updates and reminders",
+                "Offline data synchronization for uninterrupted access",
+                "Multi-language support (Arabic/English)",
+                "Parent portal for monitoring student progress"
+            ],
+            technologies: ["Flutter", "Odoo Backend", "Hive", "BLoC", "Firebase"],
+            playStore: "https://play.google.com/store/apps/details?id=com.modeem.siraj&hl=en",
+            appStore: "https://apps.apple.com/us/app/siraj-student-%D8%B3%D8%B1%D8%A7%D8%AC-%D8%A7%D9%84%D8%B7%D8%A7%D9%84%D8%A8/id6748962177",
+            images: ["siraj-app.jpg", "siraj-app.jpg", "siraj-app.jpg", "siraj-app.jpg"]
+        },
+        {
+            title: "CITY PROPERTIES",
+            description: "CITY PROPERTIES is a comprehensive property management solution for tenants that revolutionizes the rental experience. The app provides seamless access to all lease-related information, enabling tenants to manage their rental experience efficiently from anywhere. Users can submit and track maintenance requests with photo attachments, view detailed payment history and upcoming charges, communicate directly with property managers, access important lease documents, and receive notifications about property updates.",
+            features: [
+                "Real-time lease information and contract details",
+                "Service request management with photo attachments",
+                "Payment tracking and transaction history",
+                "Secure document storage and sharing",
+                "Property location and amenities on interactive map",
+                "Direct messaging with property management",
+                "Notifications for rent reminders and updates",
+                "Digital notice submission system"
+            ],
+            technologies: ["Flutter", "Java EE Backend", "Hive", "Shared Preferences", "Firebase", "Google Map", "BLoC"],
+            playStore: "https://play.google.com/store/apps/details?id=com.city.tenantmnm&hl=en",
+            appStore: "https://apps.apple.com/ae/app/city-properties/id1304887901",
+            images: ["city-app.jpg", "city-app.jpg", "city-app.jpg", "city-app.jpg"]
+        },
+        {
+            title: "AMLAKI",
+            description: "AMLAKI is an all-in-one property management platform for landlords that consolidates all property management tasks into a single, cloud-based solution accessible from anywhere. Landlords can manage multiple properties simultaneously, track rental income with detailed financial reports, monitor and assign maintenance issues to contractors, communicate efficiently with tenants through in-app messaging, and view comprehensive analytics on property performance.",
+            features: [
+                "Multi-property management dashboard",
+                "Financial tracking and reporting with charts",
+                "Maintenance request handling and assignment",
+                "Tenant communication portal",
+                "Document management system",
+                "Analytics and insights dashboard",
+                "Automated rent collection reminders",
+                "Vacancy tracking and expense management"
+            ],
+            technologies: ["Flutter", "Java EE Backend", "Hive", "Shared Preferences", "Firebase", "Google Map", "BLoC", "Chart"],
+            playStore: "https://play.google.com/store/apps/details?id=com.city.landlord&hl=en",
+            appStore: "https://apps.apple.com/fr/app/amlaki/id1344414289",
+            images: ["amlaki-app.jpg", "amlaki-app.jpg", "amlaki-app.jpg", "amlaki-app.jpg"]
+        },
+        {
+            title: "AMLAKI LEGAL AFFAIRS",
+            description: "AMLAKI LEGAL AFFAIRS is a specialized task management system for legal professionals working in property management. The app helps lawyers organize their caseload, track deadlines, manage court appearances, and coordinate with clients. It provides a streamlined workflow for handling legal matters related to real estate and property disputes with integrated document management and calendar synchronization.",
+            features: [
+                "Task and case management system",
+                "Deadline tracking and reminders",
+                "Document attachment and organization",
+                "Client communication tools",
+                "Court date calendar integration",
+                "Case status updates and notifications",
+                "Legal document templates",
+                "Billable hours tracking"
+            ],
+            technologies: ["Flutter", "Java EE Backend", "Shared Preferences", "Firebase", "BLoC"],
+            playStore: "https://play.google.com/store/apps/details?id=com.city.landlord&hl=en",
+            appStore: "https://apps.apple.com/us/app/amlaki-legal-affairs/id6740233669",
+            images: ["legal-app.jpg", "legal-app.jpg", "legal-app.jpg", "legal-app.jpg"]
+        },
+        {
+            title: "JOB VISIT",
+            description: "JOB VISIT is a field service management application designed for maintenance technicians. The app streamlines the entire maintenance workflow, from receiving work orders to completing tasks and updating job status. Technicians can access job details, view equipment history, capture photos, collect signatures, and submit reports—all while in the field with full offline support.",
+            features: [
+                "Work order management and tracking",
+                "Equipment history and maintenance logs",
+                "Photo documentation with timestamp and location",
+                "Digital signature capture for job completion",
+                "Offline functionality for field operations",
+                "Real-time status updates and notifications",
+                "Parts inventory tracking",
+                "Time tracking for billing purposes"
+            ],
+            technologies: ["Flutter", "SQLite", "BLoC", "Shared Preferences", "Java EE"],
+            playStore: "https://play.google.com/store/apps/details?id=com.royalcity.jobvisitplus&hl=en",
+            appStore: null,
+            images: ["jobvisit-app.jpg", "jobvisit-app.jpg", "jobvisit-app.jpg", "jobvisit-app.jpg"]
+        },
+        {
+            title: "Rabeh Saudi Sudanese Bank",
+            description: "Rabeh Bank Mobile App is a comprehensive mobile banking solution that brings modern banking services to users' fingertips. The app provides secure access to account information, enables various types of transactions including fund transfers and bill payments, and offers additional financial services. Built with security and user experience as top priorities, the app supports both Arabic and English languages.",
+            features: [
+                "Account balance and transaction history",
+                "Fund transfers between accounts",
+                "Bill payment services",
+                "Mobile top-up and recharge",
+                "Security features (PIN, biometric authentication)",
+                "Multi-language support (Arabic/English)",
+                "Transaction notifications",
+                "Branch and ATM locator"
+            ],
+            technologies: ["Flutter", "Java Backend", "Provider", "Shared Preferences", "SQLite"],
+            playStore: "https://play.google.com/store/apps/details?id=com.azomni.ssbomni&hl=en",
+            appStore: null,
+            images: ["rabe-app.jpg", "rabe-app.jpg", "rabe-app.jpg", "rabe-app.jpg"]
+        },
+        {
+            title: "ElNILEIN INSURANCE APP",
+            description: "ElNILEIN INSURANCE APP is a healthcare network application that connects insurance customers with medical service providers. Users can search for hospitals, clinics, and doctors within their insurance network, view coverage details, submit claims digitally, and track their medical expenses. The app simplifies the healthcare experience for insured members with real-time network updates.",
+            features: [
+                "Medical provider directory with search and filters",
+                "Coverage information and policy details",
+                "Digital claims submission",
+                "Claims tracking system with status updates",
+                "Emergency contact numbers",
+                "Health card access and digital ID",
+                "Appointment booking integration",
+                "Medical history tracking"
+            ],
+            technologies: ["Flutter", "Hive", "Shared Preferences", "BLoC", "Dot Net Backend"],
+            playStore: "https://play.google.com/store/apps/details?id=com.elnilein.insurance&hl=en",
+            appStore: null,
+            images: ["alnileen-insurance.png", "alnileen-insurance.png", "alnileen-insurance.png", "alnileen-insurance.png"]
+        },
+        {
+            title: "JB APP",
+            description: "JB App is a mobile banking application offering personal banking services for Al Jazeera Sudanese Bank customers. The app provides a secure and user-friendly interface for managing accounts, performing transactions, and accessing various banking services on the go.",
+            features: [
+                "Account management and balance inquiry",
+                "Fund transfers and payments",
+                "Transaction history and statements",
+                "Bill payment services",
+                "Secure authentication",
+                "Customer support integration",
+                "Financial notifications",
+                "Multi-currency support"
+            ],
+            technologies: ["Flutter", "Banking API", "Shared Preferences", "Provider"],
+            playStore: "https://play.google.com/store/apps/details?id=com.azomn.jb&hl=en",
+            appStore: null,
+            images: ["jb-app.jpg", "jb-app.jpg", "jb-app.jpg", "jb-app.jpg"]
+        },
+        {
+            title: "AHLINA APP",
+            description: "AHLINA App is a mobile banking application offering personal banking services for National Bank of Sudan (NBS) customers. The app brings comprehensive banking features to mobile devices with a focus on security and ease of use.",
+            features: [
+                "Complete account management",
+                "Secure fund transfers",
+                "Bill payment and mobile recharge",
+                "Transaction history",
+                "Biometric authentication",
+                "Branch locator",
+                "Customer service chat",
+                "Financial reports and statements"
+            ],
+            technologies: ["Flutter", "Banking Backend", "SQLite", "Provider"],
+            playStore: "https://play.google.com/store/apps/details?id=com.aztech.NBS&hl=en_NZ&gl=US",
+            appStore: null,
+            images: ["ahlena-app.jpg", "ahlena-app.jpg", "ahlena-app.jpg", "ahlena-app.jpg"]
+        },
+        {
+            title: "TASHEEL APP",
+            description: "TASHEEL is an innovative educational platform that transforms learning into an engaging experience. The app offers interactive quizzes across multiple subjects, providing students with instant feedback and detailed explanations. With progress tracking, performance analytics, and adaptive difficulty levels, TASHEEL helps students identify their strengths and areas for improvement.",
+            features: [
+                "Interactive quizzes across multiple subjects",
+                "Multiple subject coverage (Math, Science, Languages)",
+                "Instant score evaluation with explanations",
+                "Progress tracking and history",
+                "Performance analytics and insights",
+                "Study recommendations based on performance",
+                "Gamification elements for engagement",
+                "Practice mode and exam simulation"
+            ],
+            technologies: ["Flutter", "Firebase", "BLoC", "Shared Preferences"],
+            playStore: null,
+            appStore: null,
+            images: ["tasheel-app.jpg", "tasheel-app.jpg", "tasheel-app.jpg", "tasheel-app.jpg"]
+        }
+    ];
+
+    let currentProject = null;
+    let currentImageIndex = 0;
+
+    function showSection(id) {
+        document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+        document.querySelectorAll(".nav button").forEach(btn => btn.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        event.target.classList.add("active");
+    }
+
+    function openProjectModal(index) {
+        currentProject = projectsData[index];
+        currentImageIndex = 0;
+
+        document.getElementById('modalTitle').textContent = currentProject.title;
+        document.getElementById('modalDescription').textContent = currentProject.description;
+
+        // Set images
+        for (let i = 0; i < 4; i++) {
+            document.getElementById(`galleryImage${i + 1}`).src = currentProject.images[i];
+        }
+
+        // Set features
+        const featuresList = document.getElementById('modalFeatures');
+        featuresList.innerHTML = '';
+        currentProject.features.forEach(feature => {
+            const li = document.createElement('li');
+            li.textContent = feature;
+            featuresList.appendChild(li);
+        });
+
+        // Set technologies
+        const techContainer = document.getElementById('modalTechnologies');
+        techContainer.innerHTML = '';
+        currentProject.technologies.forEach(tech => {
+            const span = document.createElement('span');
+            span.className = 'tech-tag';
+            span.textContent = tech;
+            techContainer.appendChild(span);
+        });
+
+        // Set store buttons
+        const storeButtons = document.getElementById('modalStoreButtons');
+        storeButtons.innerHTML = '';
+        
+        if (currentProject.playStore) {
+            storeButtons.innerHTML += `
+                <a href="${currentProject.playStore}" target="_blank" class="store-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    View on Google Play
+                </a>
+            `;
+        }
+        
+        if (currentProject.appStore) {
+            storeButtons.innerHTML += `
+                <a href="${currentProject.appStore}" target="_blank" class="store-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                    </svg>
+                    View on App Store
+                </a>
+            `;
+        }
+
+        updateGallery();
+        document.getElementById('projectModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+        document.getElementById('projectModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % 4;
+        updateGallery();
+    }
+
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + 4) % 4;
+        updateGallery();
+    }
+
+    function goToImage(index) {
+        currentImageIndex = index;
+        updateGallery();
+    }
+
+    function updateGallery() {
+        document.querySelectorAll('.gallery-image').forEach((img, index) => {
+            img.classList.toggle('active', index === currentImageIndex);
+        });
+        
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentImageIndex);
+        });
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('projectModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeProjectModal();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('projectModal');
+        if (modal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
